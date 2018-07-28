@@ -8,10 +8,20 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 var access_token;
 
+app.engine('handlebars', express_handlebars({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+
 var getAccessToken = function(data){
   console.log(data);
   res.send("HERE IS YOUR " + data + "!!! ");
-  access_token = data.access_token
+  access_token = data.access_token;
 };
 
 
@@ -31,14 +41,6 @@ var loadAjaxPost = function(method, url, data, cb) {
     }
 };
 
-app.engine('handlebars', express_handlebars({
-    defaultLayout: 'main'
-}));
-app.set('view engine', 'handlebars');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
 
 
 app.get('/', function(req,res){
