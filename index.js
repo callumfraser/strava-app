@@ -49,7 +49,7 @@ var getAthleteStats = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
-              stats = data.access_token;
+              stats = data;
             } else {
                 console.log("error" + xhr.status)
             }
