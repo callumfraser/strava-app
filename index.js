@@ -55,8 +55,10 @@ app.get('/user', function(req,res){
     client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
     code: c
   };
+  console.log(request_details);
   loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), function(data){
     APIdata = data;
+    console.log(data);
   });
 
 
