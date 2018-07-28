@@ -4,6 +4,8 @@ var express_handlebars = require('express-handlebars');
 var port = process.env.PORT || 4000;
 var $ = require('jquery');
 var bodyParser = require('body-parser');
+var url = require('url');
+var urlParse = url.parse(adr, true);
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
 }));
@@ -28,8 +30,8 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
-  var url = new URL(req.originalUrl);
-  var c = url.searchParams.get("code");
+  var urlQ = urlParse(req.originalUrl);
+  var c = urlQ.c;
   var APIdata;
   var request_details = {
     client_id: 27332,
