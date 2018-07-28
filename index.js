@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var port = 4000;
+var port = process.env.PORT || 4000;
 
 function testHeroku(name){
   return "Hi there, " + name;
