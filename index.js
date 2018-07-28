@@ -62,7 +62,7 @@ app.get('/user', function(req,res){
     console.log(data);
   });
   console.log("WEGWEGWEGWEGWE\n" + APIdata);
-  res.send("G"+APIdata);
+  res.send("G"+APIdata.responseText.access_token);
 })
 
 app.listen(port, function() {
