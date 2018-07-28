@@ -5,6 +5,25 @@ var port = process.env.PORT || 4000;
 var $ = require('jquery');
 var bodyParser = require('body-parser');
 var url = require('url');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var xhr = new XMLHttpRequest();
+
+var loadAjaxPost = function(method, url, data, cb) {
+    xhr.open(method, url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              console.log(xhr);
+              cb();
+            } else {
+                console.log("error" + xhr.status)
+            }
+        }
+    }
+};
+
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
 }));
@@ -40,16 +59,11 @@ app.get('/user', function(req,res){
     client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
     code: c
   };
-  $.ajax({
-    url: 'https://www.strava.com/oauth/token',
-    type: 'POST',
-    data: request_details,
-    success: function(data){
-      APIdata = data
-    },
-    dataType: 'json',
-    contentType: "application/json"
+  loadAjaxPost('POST','https://www.strava.com/oauth/token',request_details, function(data){
+    APIdata = data;
   });
+
+
   res.send(APIdata);
 })
 
