@@ -10,6 +10,8 @@ var access_token;
 var firstNameBasis;
 var athleteId;
 var stats;
+var strava = require('strava-v3');
+
 
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
@@ -33,28 +35,11 @@ var getAccessToken = function(method, url, data, cb) {
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
               athleteId = data.athlete.id;
-              stats;
             } else {
-                console.log("error" + xhr.status)
-            }
-        }
-    }
-};
-
-var getAthleteStats = function(method, url, data, cb) {
-    xhr.open(method, url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              var data = JSON.parse(xhr.responseText);
-              stats = data;
-            } else {
-                console.log("error" + xhr.status)
-            }
-        }
-    }
+                console.log("error" + xhr.status);
+            };
+        };
+    };
 };
 
 app.get('/', function(req,res){
@@ -89,11 +74,12 @@ app.get('/user', function(req,res){
 });
 
 app.get('/welcome', function(req,res){
-  function hello(stats){
-    res.send("look at the stats: " + JSON.stringify(stats));
-  }
-  // res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
-  getAthleteStats('GET','https://www.strava.com/api/v3/athletes/'+athleteId+'/stats',null, hello());
+
+  res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
+
+  strava.athlete.get({'access_token':access_token},function(err,payload,limits) {
+    console.log(payload);
+  });
 });
 
 app.listen(port, function() {
