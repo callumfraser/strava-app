@@ -77,7 +77,7 @@ app.get('/welcome', function(req,res){
 
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
-  strava.athlete.get({'access_token':access_token},function(err,payload,limits) {
+  strava.athlete.stats({'access_token':access_token},function(err,payload,limits) {
     console.log(payload);
   });
 });
