@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', function(req,res){
+  $.getJSON('http://twitter.com/status/user_timeline/treason.json?count=10&callback=?',function(data) {
+    console.log(data);
+  });
   res.render('landing', {
       message: "Welcome to my Strava Visualisation App! Please click below to login via Strava"
   });
