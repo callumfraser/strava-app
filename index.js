@@ -47,9 +47,9 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
-  var urlQ = url.parse(req.originalUrl, true);
-  console.log(urlQ);
-  var c = urlQ.code;
+  var currUrl = req.protocol + "://" + req.get('host') + req.originalUrl;
+  var urlQ = url.parse(currUrl, true);
+  var c = urlQ.query.code;
   var APIdata;
   var request_details = {
     client_id: 27332,
