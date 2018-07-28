@@ -48,7 +48,7 @@ app.post('/', function(req,res){
 
 app.get('/user', function(req,res){
   var urlQ = url.parse(req.originalUrl, true);
-  var c = urlQ.c;
+  var c = urlQ.code;
   var APIdata;
   var request_details = {
     client_id: 27332,
@@ -60,8 +60,6 @@ app.get('/user', function(req,res){
     APIdata = data;
     console.log(data);
   });
-
-
   res.send(APIdata);
 })
 
