@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var express_handlebars = require('express-handlebars');
 var port = process.env.PORT || 4000;
-var $ = require('jquery');
 var bodyParser = require('body-parser');
 var url = require('url');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -35,9 +34,6 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', function(req,res){
-  $.getJSON('http://twitter.com/status/user_timeline/treason.json?count=10&callback=?',function(data) {
-    console.log(data);
-  });
   res.render('landing', {
       message: "Welcome to my Strava Visualisation App! Please click below to login via Strava"
   });
