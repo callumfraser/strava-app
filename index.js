@@ -15,7 +15,8 @@ app.get('/', function(req,res){
 });
 
 app.post('/', function(req,res){
-  if (login){
+  var logIn = req.body.logIn;
+  if (logIn){
     res.redirect("https://www.strava.com/oauth/authorize?client_id=27332&redirect_uri=https://gentle-falls-53808.herokuapp.com/user/&response_type=code");
   }
 });
