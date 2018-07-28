@@ -11,6 +11,12 @@ var firstNameBasis;
 var athleteId;
 var stats;
 var strava = require('strava-v3');
+var summaryDB = require('./lib/summary_schema');
+var summaryAdd = require('./lib/summaryAdd');
+
+
+const mongoURL = process.env.MONGO_DB_URL || "mongodb://localhost/StravaAPIs"
+mongoose.connect(mongoURL);
 
 
 app.engine('handlebars', express_handlebars({
@@ -74,9 +80,17 @@ app.get('/user', function(req,res){
 
 app.get('/welcome', function(req,res){
 
+
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
-  strava.activities.get({id:athleteId,'access_token':access_token,},function(err,payload,limits) {
+  strava.athletes.stats({id:athleteId,'access_token':access_token,},function(err,payload,limits) {
+    var newInput = {
+      id: athleteId,
+      summary: payload
+    };
+
+    var newStock = new StockDB();
+    stockAdd(newStock, newStock1, res);
     console.log(payload);
   });
 });
