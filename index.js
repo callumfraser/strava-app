@@ -61,7 +61,8 @@ app.get('/user', function(req,res){
     APIdata = data;
     console.log(data);
   });
-  res.send(APIdata);
+  console.log("WEGWEGWEGWEGWE\n"APIdata)
+  res.send("G"+APIdata);
 })
 
 app.listen(port, function() {
