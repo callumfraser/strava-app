@@ -67,8 +67,7 @@ app.get('/user', function(req,res){
   console.log(request_details);
   function redirect(){
     res.redirect('/welcome');
-  }
-
+  };
   getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), redirect());
   //+APIdata[1].responseText.access_token)
 });
@@ -77,7 +76,7 @@ app.get('/welcome', function(req,res){
 
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
-  strava.athletes.stats({id:athleteId,'access_token':access_token,},function(err,payload,limits) {
+  strava.activities.stats({id:athleteId,'access_token':access_token,},function(err,payload,limits) {
     console.log(payload);
   });
 });
