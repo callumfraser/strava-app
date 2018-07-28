@@ -70,12 +70,6 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
-  var getAccessToken = function(data){
-    console.log("GET ACCESS TOKEN /n" + data);
-    // access_token = data.access_token;
-    res.send("HIEHGIWEHGWEIGH " + data);
-  };
-
   var currUrl = req.protocol + "://" + req.get('host') + req.originalUrl;
   var urlQ = url.parse(currUrl, true);
   var c = urlQ.query.code;
@@ -91,7 +85,7 @@ app.get('/user', function(req,res){
 
   getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), redirect());
   //+APIdata[1].responseText.access_token)
-})
+});
 
 app.get('/welcome', function(req,res){
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
