@@ -8,6 +8,8 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 var access_token;
 var firstNameBasis;
+var athleteId;
+var stats;
 
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
@@ -30,6 +32,8 @@ var getAccessToken = function(method, url, data, cb) {
               console.log(data);
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
+              athleteId = data.athlete.id;
+              stats;
             } else {
                 console.log("error" + xhr.status)
             }
@@ -45,16 +49,13 @@ var getAthleteStats = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
-              console.log(data);
-              access_token = data.access_token;
+              stats = data.access_token;
             } else {
                 console.log("error" + xhr.status)
             }
         }
     }
 };
-
-
 
 app.get('/', function(req,res){
   res.render('landing', {
@@ -88,7 +89,11 @@ app.get('/user', function(req,res){
 });
 
 app.get('/welcome', function(req,res){
-  res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
+  function hello(stats){
+    res.send("look at the stats: " + JSON.stringify(stats));
+  }
+  // res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
+  getAthleteStats('GET','https://www.strava.com/api/v3/athletes/'+athleteId+'/stats',null, hello());
 });
 
 app.listen(port, function() {
