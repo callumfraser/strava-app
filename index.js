@@ -26,6 +26,7 @@ var loadAjaxPost = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
+              console.log(data);
               access_token = data.access_token;
             } else {
                 console.log("error" + xhr.status)
