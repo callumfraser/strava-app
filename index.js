@@ -7,7 +7,7 @@ function testHeroku(name){
 }
 
 app.get('/', function(req,res){
-  res.send(testHeroku("callum"));
+  res.send(testHeroku("Callum"));
 });
 
 app.listen(port, function() {
