@@ -28,7 +28,18 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
-  res.send("Hello, Callum. Are you accessing from " + req.protocol + "://" + req.get('host') + req.originalUrl + "?");
+  var url = new URL(req.originalUrl);
+  var c = url.searchParams.get("code");
+  var APIdata;
+  var request_details = {
+    client_id: 27332,
+    client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
+    code: c
+  }
+  $.post('https://www.strava.com/oauth/token', request_details, function(data){
+    APIdata = data;
+  })
+  res.send(APIdata);
 })
 
 app.listen(port, function() {
