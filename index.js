@@ -5,7 +5,6 @@ var port = process.env.PORT || 4000;
 var $ = require('jquery');
 var bodyParser = require('body-parser');
 var url = require('url');
-var urlParse = url.parse(adr, true);
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
 }));
@@ -30,17 +29,17 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
-  var urlQ = urlParse(req.originalUrl);
+  var urlQ = url.parse(req.originalUrl, true);
   var c = urlQ.c;
   var APIdata;
   var request_details = {
     client_id: 27332,
     client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
     code: c
-  }
+  };
   $.post('https://www.strava.com/oauth/token', request_details, function(data){
     APIdata = data;
-  })
+  });
   res.send(APIdata);
 })
 
