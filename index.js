@@ -7,6 +7,7 @@ var url = require('url');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 var access_token;
+var firstNameBasis;
 
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
@@ -18,7 +19,25 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-var loadAjaxPost = function(method, url, data, cb) {
+var getAccessToken = function(method, url, data, cb) {
+    xhr.open(method, url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              var data = JSON.parse(xhr.responseText);
+              console.log(data);
+              access_token = data.access_token;
+              firstNameBasis = data.athlete.firstname;
+            } else {
+                console.log("error" + xhr.status)
+            }
+        }
+    }
+};
+
+var getAthleteStats = function(method, url, data, cb) {
     xhr.open(method, url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(data);
@@ -67,15 +86,15 @@ app.get('/user', function(req,res){
   };
   console.log(request_details);
   function redirect(){
-    res.redirect('/user123');
+    res.redirect('/welcome');
   }
 
-  loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), redirect());
+  getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), redirect());
   //+APIdata[1].responseText.access_token)
 })
 
-app.get('/user123', function(req,res){
-  res.send("HERE YOU GO !!! " + access_token);
+app.get('/welcome', function(req,res){
+  res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 });
 
 app.listen(port, function() {
