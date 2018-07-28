@@ -26,6 +26,7 @@ var loadAjaxPost = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
+              console.log("LOADAJAXPOST" + data);
               getAccessToken(data);
             } else {
                 console.log("error" + xhr.status)
@@ -51,8 +52,8 @@ app.post('/', function(req,res){
 
 app.get('/user', function(req,res){
   var getAccessToken = function(data){
-    console.log(data);
-    access_token = data.access_token;
+    console.log("GET ACCESS TOKEN /n" + data);
+    // access_token = data.access_token;
     res.send("HIEHGIWEHGWEIGH " + data);
   };
 
