@@ -18,13 +18,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-var getAccessToken = function(data){
-  console.log(data);
-  res.send("HERE IS YOUR " + data + "!!! ");
-  access_token = data.access_token;
-};
-
-
 var loadAjaxPost = function(method, url, data, cb) {
     xhr.open(method, url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -57,10 +50,15 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
+  var getAccessToken = function(data){
+    console.log(data);
+    access_token = data.access_token;
+    res.send("HIEHGIWEHGWEIGH " + data);
+  };
+
   var currUrl = req.protocol + "://" + req.get('host') + req.originalUrl;
   var urlQ = url.parse(currUrl, true);
   var c = urlQ.query.code;
-  var APIdata;
   var request_details = {
     client_id: 27332,
     client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
