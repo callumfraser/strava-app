@@ -6,6 +6,14 @@ var bodyParser = require('body-parser');
 var url = require('url');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
+var access_token;
+
+var getAccessToken = function(data){
+  console.log(data);
+  res.send("HERE IS YOUR " + data + "!!! ");
+  access_token = data.access_token
+};
+
 
 var loadAjaxPost = function(method, url, data, cb) {
     xhr.open(method, url, true);
@@ -14,8 +22,8 @@ var loadAjaxPost = function(method, url, data, cb) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-              console.log(xhr);
-              cb(data);
+              var data = JSON.parse(xhr.responseText);
+              getAccessToken(data);
             } else {
                 console.log("error" + xhr.status)
             }
@@ -57,11 +65,6 @@ app.get('/user', function(req,res){
     code: c
   };
   console.log(request_details);
-
-  var getAccessToken = function(data){
-    console.log(data);
-    res.send("HERE IS YOUR " + data + "!!! ")
-  };
 
   loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), getAccessToken());
   //+APIdata[1].responseText.access_token)
