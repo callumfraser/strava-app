@@ -3,10 +3,16 @@ var app = express();
 var express_handlebars = require('express-handlebars');
 var port = process.env.PORT || 4000;
 var $ = require('jquery');
+var bodyParser = require('body-parser');
 app.engine('handlebars', express_handlebars({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
 
 app.get('/', function(req,res){
   res.render('landing', {
