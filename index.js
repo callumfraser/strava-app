@@ -57,12 +57,13 @@ app.get('/user', function(req,res){
     code: c
   };
   console.log(request_details);
-  loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), function(data){
-    APIdata = data;
-    console.log("FWEFWEFWEFWE\n\n\n\n\n\n"+data+"\n\n\n\n\nWEFWEFEW");
-  });
-  console.log("WEGWEGWEGWEGWE\n\n\n\n\n\n\n\n" + APIdata);
-  res.send("G");
+
+  var getAccessToken = function(data){
+    console.log(data);
+    res.send("HERE IS YOUR " + data + "!!! ")
+  };
+
+  loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), getAccessToken());
   //+APIdata[1].responseText.access_token)
 })
 
