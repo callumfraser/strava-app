@@ -37,8 +37,15 @@ app.get('/user', function(req,res){
     client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
     code: c
   };
-  $.post('https://www.strava.com/oauth/token', request_details, function(data){
-    APIdata = data;
+  $.ajax({
+    url: 'https://www.strava.com/oauth/token',
+    type: 'POST',
+    data: request_details,
+    success: function(data){
+      APIdata = data
+    },
+    dataType: 'json',
+    contentType: "application/json"
   });
   res.send(APIdata);
 })
