@@ -21,7 +21,7 @@ app.post('/', function(req,res){
 });
 
 app.get('/user', function(req,res){
-  res.send("Hello, Callum. Are you accessing from " + $client->getResponse()->headers->get('location') + "?";
+  res.send("Hello, Callum. Are you accessing from " + req.protocol + "://" + req.get('host') + req.originalUrl + "?";
 })
 
 app.listen(port, function() {
