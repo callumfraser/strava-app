@@ -61,7 +61,7 @@ app.get('/user', function(req,res){
     APIdata = data;
     console.log(data);
   });
-  console.log("WEGWEGWEGWEGWE\n"APIdata)
+  console.log("WEGWEGWEGWEGWE\n" + APIdata);
   res.send("G"+APIdata);
 })
 
