@@ -26,8 +26,7 @@ var loadAjaxPost = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
-              console.log("LOADAJAXPOST" + data);
-              getAccessToken(data);
+              access_token = data.access_token;
             } else {
                 console.log("error" + xhr.status)
             }
@@ -66,10 +65,17 @@ app.get('/user', function(req,res){
     code: c
   };
   console.log(request_details);
+  function redirect(){
+    res.redirect('/user123');
+  }
 
-  loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), getAccessToken());
+  loadAjaxPost('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), redirect());
   //+APIdata[1].responseText.access_token)
 })
+
+app.get('/user123', function(req,res){
+  res.send("HERE YOU GO !!! " + access_token);
+});
 
 app.listen(port, function() {
     console.log("App listening on port")
