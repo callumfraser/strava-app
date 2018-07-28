@@ -90,9 +90,8 @@ app.get('/welcome', function(req,res){
       id: athleteId,
       summary: payload
     };
-
-    var newStock = new StockDB();
-    stockAdd(newStock, newStock1, res);
+    var newSummary = new summaryDB();
+    summaryAdd(newSummary, newInput, res);
     console.log(payload);
   });
 });
