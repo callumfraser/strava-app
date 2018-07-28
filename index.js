@@ -48,6 +48,7 @@ app.post('/', function(req,res){
 
 app.get('/user', function(req,res){
   var urlQ = url.parse(req.originalUrl, true);
+  console.log(urlQ);
   var c = urlQ.code;
   var APIdata;
   var request_details = {
