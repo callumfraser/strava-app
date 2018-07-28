@@ -13,6 +13,8 @@ var stats;
 var strava = require('strava-v3');
 var summaryDB = require('./lib/summary_schema');
 var summaryAdd = require('./lib/summaryAdd');
+var mongoose = require('mongoose');
+
 
 
 const mongoURL = process.env.MONGO_DB_URL || "mongodb://localhost/StravaAPIs"
