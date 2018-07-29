@@ -168,8 +168,8 @@ app.get('/user', function(req,res){
 });
 
 app.get('/welcome', function(req,res){
-  var getDate = moment().subtract(3, 'months');
-  var threeMonthsAgo = getDate.format();
+  var threeMonthsAgo = moment().subtract(3, 'months');
+  // var threeMonthsAgo = getDate
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
   var startReqDate = threeMonthsAgo;
   var accountStartDate = new Date(dateCreatedAt);
