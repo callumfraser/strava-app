@@ -94,7 +94,7 @@ app.get('/welcome', function(req,res){
   var threeMonthsAgo = moment().subtract(3, 'months');
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
-  strava.athlete.activities({
+  strava.activities.get({
     id:athleteId,
     'access_token':access_token,
     'after': threeMonthsAgo
