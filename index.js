@@ -86,7 +86,7 @@ app.get('/user', function(req,res){
   function redirect(){
     res.redirect('/welcome');
   };
-  getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details), redirect());
+  getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  setTimeout(redirect(),500);
   //+APIdata[1].responseText.access_token)
 });
 
@@ -109,7 +109,7 @@ app.get('/welcome', function(req,res){
       };
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
-    console.log(payload);
+    // console.log(payload);
   });
 });
 
