@@ -53,7 +53,7 @@ var getAccessToken = function(method, url, data, cb) {
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
               athleteId = data.athlete.id;
-              cb();
+              cb;
             } else {
                 console.log("error" + xhr.status);
             };
