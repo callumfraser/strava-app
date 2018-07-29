@@ -98,7 +98,7 @@ app.get('/welcome', function(req,res){
     // 'id':athleteId,
     id: athleteId,
     'access_token':access_token
-    // 'after': threeMonthsAgo
+    'after': threeMonthsAgo
     },
     function(err,payload,limits) {
       var newInput = {
