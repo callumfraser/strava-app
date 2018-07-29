@@ -60,10 +60,12 @@ function calculateActivities(activArr,weeks){
     totalDistance += activArr.distance;
     totalAvSpeed += activArr.distance;
   };
+  var avDistancePerAct = totalDistance/noOfActs;
+  var avAvSpeedPerAct = totalAvSpeed/noOfActs;
   var summary = {
     avPerWeek: avPerWeek,
-    avDistancePerAct: totalDistance/noOfActs,
-    avAvSpeedPerAct: totalAvSpeed/noOfActs,
+    avDistancePerAct: avDistancePerAct,
+    avAvSpeedPerAct: avAvSpeedPerAct,
     fastestAvSpeed: fastestAvSpeed,
     longestActDistance:  longestActDistance,
     longestActDuration: longestActDuration
