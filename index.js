@@ -77,6 +77,7 @@ function calculateActivities(activArr,weeks){
 
 
 function analyseActivities(runs,rides,weeks){
+  console.log("ANALYSE ACTIVITIES " -> runs);
   // var now = moment().format();
 
   var runSummary = calculateActivities(runs,weeks);
@@ -86,11 +87,12 @@ function analyseActivities(runs,rides,weeks){
 };
 
 function sortActivities(response,startTime){
+  console.log("SORT ACTIVITIES -> " + response)
   var weeks = countWeeks(startTime);
   var runs = [];
   var rides = [];
   for (var i=0;i<response.length;i++){
-    if (response[i].type == "Run"){
+    if (response[i].type == "Walk"){
       runs.push(response[i]);
     } else if (response[i].type == "Ride"){
       rides.push(response[i]);
