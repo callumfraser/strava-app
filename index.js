@@ -15,6 +15,7 @@ var summaryDB = require('./lib/summary_schema');
 var summaryAdd = require('./lib/summaryAdd');
 var mongoose = require('mongoose');
 var moment = require('moment');
+var dateCreatedAt;
 
 app.use(function(req,res,next){
   res.header('Access-Control-Allow-Origin', "*");
@@ -29,6 +30,73 @@ app.use(function(req,res,next){
 //
 //
 // }
+function countWeeks(startTime){
+  var now = moment().format();
+  var timeDiff = Math.abs(now.getTime() - startTime.getTime());
+  var amountOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  var weeks = Math.ceil(amountOfDays/7);
+  return weeks
+};
+
+function calculateActivities(activArr,weeks){
+  var noOfActs = activeArr.length;
+  var avPerWeek = noOfActs/weeks;
+  var totalDistance = 0;
+  var totalAvSpeed = 0;
+  var fastestAvSpeed = 0;
+  var longestActDistance = 0;
+  var longestActDuration = 0;
+  for (var i=0;i<activArr.length;i++){
+    if (activArr[i].average_speed > fastestAvSpeed){
+      fastestAvSpeed = activArr[i].average_speed;
+    };
+    if (activArr[i].distance > longestActDistance){
+      longestActDistance = activArr[i].distance;
+    }
+    if (activArr[i].elapsed_time > longestActDuration){
+      longestActDuration = activArr[i].elapsed_time;
+    }
+    totalDistance += activArr.distance;
+    totalAvSpeed += activArr.distance;
+  };
+  var summary = {
+    avPerWeek: avPerWeek,
+    avDistancePerAct: totalDistance/noOfActs,
+    avAvSpeedPerAct: totalAvSpeed/noOfAcs,
+    fastestAvSpeed: fastestAvSpeed,
+    longestActDistance:  longestActDistance,
+    longestActDuration: longestActDuration
+  }
+
+  console.log(summary);
+  return summary;
+
+}
+
+
+
+function analyseActivities(runs,rides,weeks){
+  // var now = moment().format();
+
+  var runSummary = calculateActivities(runs,weeks);
+  if (rides.length > 0){
+    var rideSummary = calculateActivities(rides,weeks);
+  }
+};
+
+function sortActivities(response,startTime){
+  var weeks = countWeeks(startTime);
+  var runs = [];
+  var rides = [];
+  for (var i=0;i<response.length;i++){
+    if (response[i].type == "Run"){
+      runs.push(response[i]);
+    } else if (response[i].type == "Ride"){
+      rides.push(response[i]);
+    };
+  };
+  analyseActivities(runs,rides,weeks);
+};
 
 
 
@@ -55,10 +123,11 @@ var getAccessToken = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
-              console.log(data);
+              // console.log(data);
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
               athleteId = data.athlete.id;
+              dateCreatedAt = data.created_at;
               cb;
             } else {
                 console.log("error" + xhr.status);
@@ -100,20 +169,14 @@ app.get('/user', function(req,res){
 app.get('/welcome', function(req,res){
   var getDate = moment().subtract(3, 'months');
   var threeMonthsAgo = getDate.format();
-  console.log(threeMonthsAgo);
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
+  var startReqDate = threeMonthsAgo;
+  if (dateCreatedAt.getTime() > threeMonthsAgo.getTime()){
+    startReqdate = dateCreatedAt
+  };
 
-  // function sortActivities(response){
-  //   var runs = [];
-  //   var rides = [];
-  //   for (var i=0;i<response.length;i++){
-  //     var actDate = response[i].start_date;
-  //     if (
-  //   }
-  //
-  //   var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-  //
-  // }
+
+
 
   strava.athlete.listActivities({
     // 'id':athleteId,
@@ -122,6 +185,7 @@ app.get('/welcome', function(req,res){
     'access_token':access_token
     },
     function(err,payload,limits) {
+      sortActivities(payload,startReqDate);
       var newInput = {
         id: athleteId,
         summary: payload
