@@ -63,7 +63,7 @@ function calculateActivities(activArr,weeks){
   var summary = {
     avPerWeek: avPerWeek,
     avDistancePerAct: totalDistance/noOfActs,
-    avAvSpeedPerAct: totalAvSpeed/noOfAcs,
+    avAvSpeedPerAct: totalAvSpeed/noOfActs,
     fastestAvSpeed: fastestAvSpeed,
     longestActDistance:  longestActDistance,
     longestActDuration: longestActDuration
