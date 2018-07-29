@@ -14,6 +14,7 @@ var strava = require('strava-v3');
 var summaryDB = require('./lib/summary_schema');
 var summaryAdd = require('./lib/summaryAdd');
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 app.use(function(req,res,next){
   res.header('Access-Control-Allow-Origin', "*");
@@ -90,15 +91,19 @@ app.get('/user', function(req,res){
 });
 
 app.get('/welcome', function(req,res){
-
-
+  var threeMonthsAgo = moment().subtract(3, 'months');
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
-  strava.athletes.stats({id:athleteId,'access_token':access_token,},function(err,payload,limits) {
-    var newInput = {
-      id: athleteId,
-      summary: payload
-    };
+  strava.athlete.activities({
+    id:athleteId,
+    'access_token':access_token,
+    'after': threeMonthsAgo
+    },
+    function(err,payload,limits) {
+      var newInput = {
+        id: athleteId,
+        summary: payload
+      };
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
     console.log(payload);
