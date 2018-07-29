@@ -123,11 +123,12 @@ var getAccessToken = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
-              // console.log(data);
+              console.log(data);
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
               athleteId = data.athlete.id;
               dateCreatedAt = data.created_at;
+              console.log("DATE CREATED AT = " + dateCreatedAt);
               cb;
             } else {
                 console.log("error" + xhr.status);
