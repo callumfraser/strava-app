@@ -183,7 +183,7 @@ app.get('/welcome', function(req,res){
   var startReqDate = threeMonthsAgo;
   var accountStartDate = new Date(dateCreatedAt);
   if (accountStartDate.getTime() > threeMonthsAgo.getTime()){
-    startReqdate = dateCreatedAt
+    startReqDate = dateCreatedAt
   };
 
 
