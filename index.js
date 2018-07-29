@@ -84,9 +84,9 @@ app.get('/user', function(req,res){
   };
   console.log(request_details);
   function redirect(){
-    res.redirect('/welcome');
+    setTimeout(res.redirect('/welcome'), 500);
   };
-  getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  setTimeout(redirect(),500));
+  getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  redirect();
   //+APIdata[1].responseText.access_token)
 });
 
