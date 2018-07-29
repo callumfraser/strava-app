@@ -22,7 +22,13 @@ app.use(function(req,res,next){
   res.header('Access-Control-Allow-Methods', 'Content-Type');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
-})
+});
+
+// var saveRunSummary(struct){
+//   var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+//
+//
+// }
 
 
 
@@ -97,10 +103,22 @@ app.get('/welcome', function(req,res){
   console.log(threeMonthsAgo);
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
+  // function sortActivities(response){
+  //   var runs = [];
+  //   var rides = [];
+  //   for (var i=0;i<response.length;i++){
+  //     var actDate = response[i].start_date;
+  //     if (
+  //   }
+  //
+  //   var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+  //
+  // }
+
   strava.athlete.listActivities({
     // 'id':athleteId,
     id: athleteId,
-    'after': threeMonthsAgo,
+    // 'after': threeMonthsAgo,
     'access_token':access_token
     },
     function(err,payload,limits) {
@@ -115,5 +133,5 @@ app.get('/welcome', function(req,res){
 });
 
 app.listen(port, function() {
-    console.log("App listening on port")
+    console.log("App listening on port" + port);
 });
