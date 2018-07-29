@@ -123,12 +123,12 @@ var getAccessToken = function(method, url, data, cb) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               var data = JSON.parse(xhr.responseText);
-              // console.log(data);
+              console.log(data);
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
               athleteId = data.athlete.id;
               dateCreatedAt = data.athlete.created_at;
-              // console.log("DATE CREATED AT = " + dateCreatedAt);
+              console.log("DATE CREATED AT = " + dateCreatedAt);
               cb;
             } else {
                 console.log("error" + xhr.status);
@@ -172,7 +172,8 @@ app.get('/welcome', function(req,res){
   var threeMonthsAgo = getDate.format();
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
   var startReqDate = threeMonthsAgo;
-  if (dateCreatedAt.getTime() > threeMonthsAgo.getTime()){
+  var accountStartDate = new Date(dateCreatedAt);
+  if (accountStartDate.getTime() > threeMonthsAgo.getTime()){
     startReqdate = dateCreatedAt
   };
 
