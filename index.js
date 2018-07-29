@@ -97,7 +97,7 @@ app.get('/welcome', function(req,res){
   strava.athlete.listActivities({
     // 'id':athleteId,
     id: athleteId,
-    'access_token':access_token
+    'access_token':access_token,
     'after': threeMonthsAgo
     },
     function(err,payload,limits) {
