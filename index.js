@@ -35,11 +35,14 @@ function countWeeks(startTime){
   var startDate = new Date(startTime);
   var timeDiff = Math.abs(now.getTime() - startDate.getTime());
   var amountOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  console.log("AMOUNT OF DAYS: " + amountOfDays);
   var weeks = Math.ceil(amountOfDays/7);
+  console.log("")
   return weeks
 };
 
 function calculateActivities(activArr,weeks){
+  console.log("WEEKS: " + weeks);
   var noOfActs = activArr.length;
   var avPerWeek = noOfActs/weeks;
   var totalDistance = 0;
@@ -57,11 +60,11 @@ function calculateActivities(activArr,weeks){
     if (activArr[i].elapsed_time > longestActDuration){
       longestActDuration = activArr[i].elapsed_time;
     }
-    totalDistance += activArr.distance;
-    totalAvSpeed += activArr.distance;
+    totalDistance += activArr[i].distance;
+    totalAvSpeed += activArr[i].distance;
   };
-  var avDistancePerAct = totalDistance/noOfActs;
-  var avAvSpeedPerAct = totalAvSpeed/noOfActs;
+  var avDistancePerAct = (totalDistance/noOfActs);
+  var avAvSpeedPerAct = (totalAvSpeed/noOfActs);
   var summary = {
     avPerWeek: avPerWeek,
     avDistancePerAct: avDistancePerAct,
@@ -74,7 +77,7 @@ function calculateActivities(activArr,weeks){
   console.log(summary);
   return summary;
 
-}
+};
 
 
 
