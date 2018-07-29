@@ -40,7 +40,7 @@ function countWeeks(startTime){
 };
 
 function calculateActivities(activArr,weeks){
-  var noOfActs = activeArr.length;
+  var noOfActs = activArr.length;
   var avPerWeek = noOfActs/weeks;
   var totalDistance = 0;
   var totalAvSpeed = 0;
