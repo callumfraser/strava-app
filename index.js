@@ -95,7 +95,7 @@ app.get('/welcome', function(req,res){
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
   strava.activities.get({
-    id:athleteId,
+    'id':athleteId,
     'access_token':access_token,
     'after': threeMonthsAgo
     },
