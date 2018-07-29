@@ -91,7 +91,8 @@ app.get('/user', function(req,res){
 });
 
 app.get('/welcome', function(req,res){
-  var threeMonthsAgo = moment().subtract(3, 'months');
+  var getDate = moment().subtract(3, 'months');
+  var threeMonthsAgo = getDate.format();
   console.log(threeMonthsAgo);
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
 
