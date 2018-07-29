@@ -53,6 +53,7 @@ var getAccessToken = function(method, url, data, cb) {
               access_token = data.access_token;
               firstNameBasis = data.athlete.firstname;
               athleteId = data.athlete.id;
+              cb();
             } else {
                 console.log("error" + xhr.status);
             };
@@ -84,7 +85,7 @@ app.get('/user', function(req,res){
   };
   console.log(request_details);
   function redirect(){
-    setTimeout(res.redirect('/welcome'), 500);
+    res.redirect('/welcome');
   };
   getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  redirect());
   //+APIdata[1].responseText.access_token)
