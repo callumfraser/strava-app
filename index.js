@@ -31,8 +31,9 @@ app.use(function(req,res,next){
 //
 // }
 function countWeeks(startTime){
-  var now = moment().format();
-  var timeDiff = Math.abs(now.getTime() - startTime.getTime());
+  var now = new Date(moment().format());
+  var startDate = new Date(startTime);
+  var timeDiff = Math.abs(now.getTime() - startDate.getTime());
   var amountOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   var weeks = Math.ceil(amountOfDays/7);
   return weeks
@@ -168,8 +169,9 @@ app.get('/user', function(req,res){
 });
 
 app.get('/welcome', function(req,res){
-  var threeMonthsAgo = moment().subtract(3, 'months');
-  // var threeMonthsAgo = getDate
+  var getDate = moment().subtract(3, 'months');
+  var threeMonthsAgo = new Date(getDate.format());
+
   res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
   var startReqDate = threeMonthsAgo;
   var accountStartDate = new Date(dateCreatedAt);
