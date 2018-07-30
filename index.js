@@ -16,6 +16,8 @@ var summaryAdd = require('./lib/summaryAdd');
 var mongoose = require('mongoose');
 var moment = require('moment');
 var dateCreatedAt;
+var searchID = require('./lib/shoesSearch');
+
 
 app.use(function(req,res,next){
   res.header('Access-Control-Allow-Origin', "*");
@@ -202,14 +204,18 @@ app.get('/welcome', function(req,res){
       'access_token':access_token
   },
   function(err,payload,limits) {
+    var previousSummaries = searchID(summaryDB,{id:athleteId});
     var newInput = sortActivities(payload,startReqDate);
     console.log(newInput);
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
+    console.log("PREVIOUS SUMMARIES !! -> ")
+
+    console.log(previousSummaries);
     // console.log(payload);
     res.render('user', {
         newInput: newInput,
-        firstaName: firstNameBasis
+        firstName: firstNameBasis
     });
 
   });
