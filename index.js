@@ -98,10 +98,13 @@ function analyseActivities(runs,rides,weeks){
 
 function sortActivities(response,startTime){
   // console.log("SORT ACTIVITIES -> " + response)
+  var startDateVal = new Date(startTime).getTime();
+  console.log(startDateVal);
   var weeks = countWeeks(startTime);
   var runs = [];
   var rides = [];
   for (var i=0;i<response.length;i++){
+    var
     if (response[i].type == "Walk"){
       runs.push(response[i]);
     } else if (response[i].type == "Ride"){
