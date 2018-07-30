@@ -188,8 +188,9 @@ app.get('/welcome', function(req,res){
   var startReqDate = threeMonthsAgo;
   var accountStartDate = new Date(dateCreatedAt);
   if (accountStartDate.getTime() > threeMonthsAgo.getTime()){
-    startReqDate = dateCreatedAt
+    startReqDate = dateCreatedAt;
   };
+  console.log("START REQ DATE " + startReqDate);
   strava.athlete.listActivities({
     // 'id':athleteId,
     id: athleteId,
