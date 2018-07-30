@@ -124,7 +124,7 @@ function sortActivities(response,startTime){
     if (actDate > startDateVal){
       if (response[i].type == "Run"){
         runs.push(response[i]);
-      } else if (response[i].type == "Walk"){
+      } else if (response[i].type == "Ride"){
         rides.push(response[i]);
       };
     };
