@@ -37,8 +37,7 @@ function countWeeks(startTime){
   var amountOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   console.log("AMOUNT OF DAYS: " + amountOfDays);
   var weeks = Math.ceil(amountOfDays/7);
-  console.log("")
-  return weeks
+  return weeks;
 };
 
 function calculateActivities(activArr,weeks){
@@ -73,22 +72,28 @@ function calculateActivities(activArr,weeks){
     longestActDistance:  longestActDistance,
     longestActDuration: longestActDuration
   }
-
-  console.log(summary);
   return summary;
-
 };
 
 
 
 function analyseActivities(runs,rides,weeks){
-  // console.log("ANALYSE ACTIVITIES " -> runs);
-  // var now = moment().format();
-
-  var runSummary = calculateActivities(runs,weeks);
+  var now = moment().format();
+  var runSummary = {};
+  var rideSummary = {};
+  if (runs.length > 0){
+    runSummary = calculateActivities(runs,weeks);
+  };
   if (rides.length > 0){
-    var rideSummary = calculateActivities(rides,weeks);
-  }
+    rideSummary = calculateActivities(rides,weeks);
+  };
+  var completeSummary = {
+    date: now,
+    id: athleteId,
+    rides: rideSummary,
+    runs: runSummary
+  };
+  return completeSummary;
 };
 
 function sortActivities(response,startTime){
@@ -103,7 +108,7 @@ function sortActivities(response,startTime){
       rides.push(response[i]);
     };
   };
-  analyseActivities(runs,rides,weeks);
+  return analyseActivities(runs,rides,weeks);
 };
 
 
@@ -185,10 +190,6 @@ app.get('/welcome', function(req,res){
   if (accountStartDate.getTime() > threeMonthsAgo.getTime()){
     startReqDate = dateCreatedAt
   };
-
-
-
-
   strava.athlete.listActivities({
     // 'id':athleteId,
     id: athleteId,
@@ -196,13 +197,14 @@ app.get('/welcome', function(req,res){
     'access_token':access_token
     },
     function(err,payload,limits) {
-      sortActivities(payload,startReqDate);
+      var bothSummaries = sortActivities(payload,startReqDate);
+      console.log(bothSummaries);
       var newInput = {
         id: athleteId,
         summary: payload
       };
-    var newSummary = new summaryDB();
-    summaryAdd(newSummary, newInput, res);
+    // var newSummary = new summaryDB();
+    // summaryAdd(newSummary, newInput, res);
     // console.log(payload);
   });
 });
