@@ -104,7 +104,7 @@ function sortActivities(response,startTime){
   var runs = [];
   var rides = [];
   for (var i=0;i<response.length;i++){
-    var
+    // var
     if (response[i].type == "Walk"){
       runs.push(response[i]);
     } else if (response[i].type == "Ride"){
