@@ -222,7 +222,7 @@ app.get('/welcome', function(req,res){
       });
     }
 
-    setTimeout(renderResults, 2000);
+    setTimeout(renderResults, 5000);
     // console.log(payload);
 
 
