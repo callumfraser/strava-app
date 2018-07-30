@@ -60,7 +60,7 @@ function calculateActivities(activArr,weeks){
       longestActDuration = activArr[i].elapsed_time;
     }
     totalDistance += activArr[i].distance;
-    totalAvSpeed += activArr[i].distance;
+    totalAvSpeed += activArr[i].average_speed;
   };
   var avDistancePerAct = (totalDistance/noOfActs);
   var avAvSpeedPerAct = (totalAvSpeed/noOfActs);
