@@ -109,6 +109,7 @@ function sortActivities(response,startTime){
         runs.push(response[i]);
       } else if (response[i].type == "Walk"){
         rides.push(response[i]);
+        runs.push(response[i]);
       };
     };
   };
