@@ -219,6 +219,7 @@ app.get('/welcome', function(req,res){
       'access_token':access_token
   },
   function(err,payload,limits) {
+    console.log(payload);
     var query = {
       'id': athleteId
     };
@@ -229,13 +230,13 @@ app.get('/welcome', function(req,res){
 
     function renderResults(){
       console.log("RENDER THESE -> ")
-      console.log(previousSummaries);
+      // console.log(previousSummaries);
       res.render('user', {
           newInput: newInput,
           firstName: firstNameBasis,
           previousSummaries: previousSummaries
       });
-    }
+    };
 
     setTimeout(renderResults, 3000);
 
