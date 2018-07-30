@@ -213,6 +213,7 @@ app.get('/welcome', function(req,res){
     summaryAdd(newSummary, newInput, res);
 
     function renderResults(){
+      console.log("RENDER THESE -> ")
       console.log(previousSummaries);
       res.render('user', {
           newInput: newInput,
