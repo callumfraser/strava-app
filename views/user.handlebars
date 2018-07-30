@@ -3,14 +3,26 @@
 </head>
 
 <body align="center">
-    <h1>Visualise your exercise</h1>
-    <p>{{message}}</p>
+    <h1>The last 3 months</h1>
+    <p>Hi there, {{firstName}}, here is your summary of the past 3 months</p>
     <div>
-        <form class="" action="/" method="post">
-            <input type="submit" class="button"name="logIn" value="Login">
-        </form>
+      <p>Runs:</p>
+      <p>Average amount per week: {{newInput.runs.avPerWeek}}</p>
+      <p>Average Distance per run: {{newInput.runs.avDistancePerAct}}</p>
+      <p>Average speed per run: {{newInput.runs.avAvSpeedPerAct}}</p>
+      <p>Fastest average speed: {{newInput.runs.fastestAvSpeed}}</p>
+      <p>Longest run (distance): {{newInput.runs.longestActDistance}}</p>
+      <p>Longest run (duration): {{newInput.runs.longestActDuration}}</p>
     </div>
-
+    <div>
+      <p>Rides:</p>
+      <p>Average amount per week: {{newInput.rides.avPerWeek}}</p>
+      <p>Average Distance per run: {{newInput.rides.avDistancePerAct}}</p>
+      <p>Average speed per run: {{newInput.rides.avAvSpeedPerAct}}</p>
+      <p>Fastest average speed: {{newInput.rides.fastestAvSpeed}}</p>
+      <p>Longest run (distance): {{newInput.rides.longestActDistance}}</p>
+      <p>Longest run (duration): {{newInput.rides.longestActDuration}}</p>
+    </div>
 
 
 </body>

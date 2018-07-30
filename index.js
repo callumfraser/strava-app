@@ -109,14 +109,9 @@ function sortActivities(response,startTime){
         runs.push(response[i]);
       } else if (response[i].type == "Walk"){
         rides.push(response[i]);
-        runs.push(response[i]);
       };
     };
   };
-  console.log("RIDES ");
-  console.log(rides);
-  console.log("RUNS ");
-  console.log(runs);
   return analyseActivities(runs,rides,weeks);
 };
 
@@ -209,10 +204,13 @@ app.get('/welcome', function(req,res){
   function(err,payload,limits) {
     var newInput = sortActivities(payload,startReqDate);
     console.log(newInput);
-    // console.log(bothSummaries);
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
     // console.log(payload);
+    res.render('user', {
+        newInput: newInput,
+        firstaName: firstNameBasis
+    });
 
   });
 });
