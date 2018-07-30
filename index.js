@@ -16,7 +16,7 @@ var summaryAdd = require('./lib/summaryAdd');
 var mongoose = require('mongoose');
 var moment = require('moment');
 var dateCreatedAt;
-var searchID = require('./lib/shoesSearch');
+var searchID = require('./lib/summarySearch');
 
 
 app.use(function(req,res,next){
