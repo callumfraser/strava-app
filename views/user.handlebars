@@ -24,5 +24,29 @@
       <p>Longest run (duration): {{newInput.rides.longestActDuration}}</p>
     </div>
 
+    <h2>Previous summaries</h2>
+    {{#each previousSummaries}}
+    <h3>Date: {{date}}</h3>
+    <div>
+      <p>Runs:</p>
+      <p>Average amount per week: {{runs.avPerWeek}}</p>
+      <p>Average Distance per run: {{runs.avDistancePerAct}}</p>
+      <p>Average speed per run: {{runs.avAvSpeedPerAct}}</p>
+      <p>Fastest average speed: {{uns.fastestAvSpeed}}</p>
+      <p>Longest run (distance): {{runs.longestActDistance}}</p>
+      <p>Longest run (duration): {{runs.longestActDuration}}</p>
+    </div>
+    <div>
+      <p>Rides:</p>
+      <p>Average amount per week: {{rides.avPerWeek}}</p>
+      <p>Average Distance per run: {{rides.avDistancePerAct}}</p>
+      <p>Average speed per run: {{rides.avAvSpeedPerAct}}</p>
+      <p>Fastest average speed: {{rides.fastestAvSpeed}}</p>
+      <p>Longest run (distance): {{rides.longestActDistance}}</p>
+      <p>Longest run (duration): {{rides.longestActDuration}}</p>
+    </div>
+
+    {{/each}}
+
 
 </body>

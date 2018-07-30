@@ -214,12 +214,17 @@ app.get('/welcome', function(req,res){
     summaryAdd(newSummary, newInput, res);
     console.log("PREVIOUS SUMMARIES !! -> ");
 
-    setTimeout(console.log(previousSummaries), 1000);
+    function renderResults(){
+      res.render('user', {
+          newInput: newInput,
+          firstName: firstNameBasis,
+          previousSummaries: previousSummaries
+      });
+    }
+
+    setTimeout(renderResults(), 2000);
     // console.log(payload);
-    res.render('user', {
-        newInput: newInput,
-        firstName: firstNameBasis
-    });
+
 
   });
 });
