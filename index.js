@@ -212,7 +212,7 @@ app.get('/welcome', function(req,res){
     console.log(newInput);
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
-    console.log("PREVIOUS SUMMARIES !! -> ")
+    console.log("PREVIOUS SUMMARIES !! -> ");
 
     console.log(previousSummaries);
     // console.log(payload);
