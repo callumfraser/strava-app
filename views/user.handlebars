@@ -1,31 +1,40 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 
 <body align="center">
-    <h1>The last 3 months</h1>
-    <p>Hi there, {{firstName}}, here is your summary of the past 3 months</p>
-    <div>
-      <p>Runs:</p>
-      <p>Average amount per week: {{newInput.runs.avPerWeek}}</p>
-      <p>Average Distance per run: {{newInput.runs.avDistancePerAct}}</p>
-      <p>Average speed per run: {{newInput.runs.avAvSpeedPerAct}}</p>
-      <p>Fastest average speed: {{newInput.runs.fastestAvSpeed}}</p>
-      <p>Longest run (distance): {{newInput.runs.longestActDistance}}</p>
-      <p>Longest run (duration): {{newInput.runs.longestActDuration}}</p>
-    </div>
-    <div>
-      <p>Rides:</p>
-      <p>Average amount per week: {{newInput.rides.avPerWeek}}</p>
-      <p>Average Distance per run: {{newInput.rides.avDistancePerAct}}</p>
-      <p>Average speed per run: {{newInput.rides.avAvSpeedPerAct}}</p>
-      <p>Fastest average speed: {{newInput.rides.fastestAvSpeed}}</p>
-      <p>Longest run (distance): {{newInput.rides.longestActDistance}}</p>
-      <p>Longest run (duration): {{newInput.rides.longestActDuration}}</p>
-    </div>
 
-    <h2>Previous summaries</h2>
-    {{#each previousSummaries}}
+  <h1>The last 3 months</h1>
+  <p>Hi there, {{firstName}}, here is your summary of the past 3 months</p>
+  <div>
+    <p>Runs:</p>
+    <p>Average amount per week: {{newInput.runs.avPerWeek}}</p>
+    <p>Average Distance per run: {{newInput.runs.avDistancePerAct}}</p>
+    <p>Average speed per run: {{newInput.runs.avAvSpeedPerAct}}</p>
+    <p>Fastest average speed: {{newInput.runs.fastestAvSpeed}}</p>
+    <p>Longest run (distance): {{newInput.runs.longestActDistance}}</p>
+    <p>Longest run (duration): {{newInput.runs.longestActDuration}}</p>
+  </div>
+  <div>
+    <p>Rides:</p>
+    <p>Average amount per week: {{newInput.rides.avPerWeek}}</p>
+    <p>Average Distance per run: {{newInput.rides.avDistancePerAct}}</p>
+    <p>Average speed per run: {{newInput.rides.avAvSpeedPerAct}}</p>
+    <p>Fastest average speed: {{newInput.rides.fastestAvSpeed}}</p>
+    <p>Longest run (distance): {{newInput.rides.longestActDistance}}</p>
+    <p>Longest run (duration): {{newInput.rides.longestActDuration}}</p>
+  </div>
+
+  <div class="" align="left">
+    <form class="" action="/" method="post">
+      <button type="submit" name="Logout">Log out</button>
+
+
+    </form>
+
+  </div>
+  <h2>Previous summaries</h2>
+  {{#each previousSummaries}}
     <h3>Date: {{cleanDate date}}</h3>
     <div>
       <p>Runs:</p>
@@ -39,14 +48,12 @@
     <div>
       <p>Rides:</p>
       <p>Average amount per week: {{rides.avPerWeek}}</p>
-      <p>Average Distance per run: {{rides.avDistancePerAct}}</p>
-      <p>Average speed per run: {{rides.avAvSpeedPerAct}}</p>
+      <p>Average Distance per ride: {{rides.avDistancePerAct}}</p>
+      <p>Average speed per ride: {{rides.avAvSpeedPerAct}}</p>
       <p>Fastest average speed: {{rides.fastestAvSpeed}}</p>
-      <p>Longest run (distance): {{rides.longestActDistance}}</p>
-      <p>Longest run (duration): {{rides.longestActDuration}}</p>
+      <p>Longest ride (distance): {{rides.longestActDistance}}</p>
+      <p>Longest ride (duration): {{rides.longestActDuration}}</p>
     </div>
-
-    {{/each}}
-
+  {{/each}}
 
 </body>

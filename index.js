@@ -18,6 +18,7 @@ var moment = require('moment');
 var dateCreatedAt;
 var searchID = require('./lib/summarySearch');
 var Handlebars = require('handlebars');
+var newInput;
 
 
 app.use(function(req,res,next){
@@ -46,7 +47,6 @@ function countWeeks(startTime){
 };
 
 function calculateActivities(activArr,weeks){
-  console.log("WEEKS: " + weeks);
   var noOfActs = activArr.length;
   var avPerWeek = noOfActs/weeks;
   var totalDistance = 0;
@@ -129,10 +129,6 @@ function sortActivities(response,startTime){
       };
     };
   };
-  console.log("RUNS");
-  console.log(runs);
-  console.log("RIDES");
-  console.log(rides);
   return analyseActivities(runs,rides,weeks);
 };
 
@@ -197,7 +193,11 @@ app.get('/user', function(req,res){
     client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
     code: c
   };
-  console.log(request_details);
+  strava.oauth.getToken(c,function(err,payload,limits){
+    console.log("strava.oauthGET PAYLOAD!!");
+    console.log(payload);
+  });
+  // console.log(request_details);
   function redirect(){
     res.redirect('/welcome');
   };
@@ -228,7 +228,7 @@ app.get('/welcome', function(req,res){
       'id': athleteId
     };
     var previousSummaries = searchID(summaryDB,query);
-    var newInput = sortActivities(payload,startReqDate);
+    newInput = sortActivities(payload,startReqDate);
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
 
