@@ -113,7 +113,10 @@ function sortActivities(response,startTime){
       };
     };
   };
+  console.log("RIDES ");
   console.log(rides);
+  console.log("RUNS ");
+  console.log(runs);
   return analyseActivities(runs,rides,weeks);
 };
 
