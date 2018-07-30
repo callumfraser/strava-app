@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 var dateCreatedAt;
 var searchID = require('./lib/summarySearch');
+var Handlebars = require('handlebars');
 
 
 app.use(function(req,res,next){
@@ -27,11 +28,14 @@ app.use(function(req,res,next){
   next();
 });
 
-// var saveRunSummary(struct){
-//   var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-//
-//
-// }
+Handlebars.registerHelper('cleanDate', function(date) {
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  var actDate = new Date(date);
+  return toLocaleDateString("en-US", options);
+
+});
+
+
 function countWeeks(startTime){
   var now = new Date(moment().format());
   var startDate = new Date(startTime);
@@ -83,11 +87,23 @@ function analyseActivities(runs,rides,weeks){
   var now = moment().format();
   var runSummary = {};
   var rideSummary = {};
+  var emptySet = {
+    avPerWeek: 0,
+    avDistancePerAct: 0,
+    avAvSpeedPerAct: 0,
+    fastestAvSpeed: 0,
+    longestActDistance:  0,
+    longestActDuration: 0
+  };
   if (runs.length > 0){
     runSummary = calculateActivities(runs,weeks);
+  } else {
+    runSummary = emptySet;
   };
   if (rides.length > 0){
     rideSummary = calculateActivities(rides,weeks);
+  } else {
+    rideSummary = emptySet;
   };
   var completeSummary = {
     date: now,
