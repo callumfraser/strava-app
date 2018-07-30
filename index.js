@@ -204,7 +204,10 @@ app.get('/welcome', function(req,res){
       'access_token':access_token
   },
   function(err,payload,limits) {
-    var previousSummaries = searchID(summaryDB,{id:athleteId});
+    var query = {
+      'id': athleteId
+    };
+    var previousSummaries = searchID(summaryDB,query);
     var newInput = sortActivities(payload,startReqDate);
     console.log(newInput);
     var newSummary = new summaryDB();
