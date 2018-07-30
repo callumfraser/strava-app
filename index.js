@@ -188,20 +188,25 @@ app.get('/user', function(req,res){
   var currUrl = req.protocol + "://" + req.get('host') + req.originalUrl;
   var urlQ = url.parse(currUrl, true);
   var c = urlQ.query.code;
-  var request_details = {
-    client_id: 27332,
-    client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
-    code: c
-  };
+  // var request_details = {
+  //   client_id: 27332,
+  //   client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
+  //   code: c
+  // };
   strava.oauth.getToken(c,function(err,payload,limits){
     console.log("strava.oauthGET PAYLOAD!!");
     console.log(payload);
+    access_token = payload.access_token;
+    firstNameBasis = payload.athlete.firstname;
+    athleteId = payload.athlete.id;
+    dateCreatedAt = payload.athlete.created_at;
+    res.redirect('/welcome');
   });
   // console.log(request_details);
-  function redirect(){
-    res.redirect('/welcome');
-  };
-  getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  redirect());
+  // function redirect(){
+  //   res.redirect('/welcome');
+  // };
+  // getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  redirect());
   //+APIdata[1].responseText.access_token)
 });
 
