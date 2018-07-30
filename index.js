@@ -237,7 +237,7 @@ app.get('/welcome', function(req,res){
       });
     }
 
-    setTimeout(renderResults, 5000);
+    setTimeout(renderResults, 3000);
 
 
   });
