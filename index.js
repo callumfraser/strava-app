@@ -105,9 +105,9 @@ function sortActivities(response,startTime){
   for (var i=0;i<response.length;i++){
     var actDate = new Date(response[i].start_date).getTime();
     if (actDate > startDateVal){
-      if (response[i].type == "Walk"){
+      if (response[i].type == "Run"){
         runs.push(response[i]);
-      } else if (response[i].type == "Ride"){
+      } else if (response[i].type == "Walk"){
         rides.push(response[i]);
       };
     };
