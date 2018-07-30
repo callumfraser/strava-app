@@ -112,6 +112,7 @@ function sortActivities(response,startTime){
       };
     };
   };
+  console.log(rides);
   return analyseActivities(runs,rides,weeks);
 };
 
@@ -188,7 +189,7 @@ app.get('/welcome', function(req,res){
   var getDate = moment().subtract(3, 'months');
   var threeMonthsAgo = new Date(getDate.format());
 
-  res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
+  // res.send("Hi there, " + firstNameBasis + ", let's see how you've been doing.");
   var startReqDate = threeMonthsAgo;
   var accountStartDate = new Date(dateCreatedAt);
   if (accountStartDate.getTime() > threeMonthsAgo.getTime()){
@@ -208,6 +209,7 @@ app.get('/welcome', function(req,res){
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
     // console.log(payload);
+
   });
 });
 
