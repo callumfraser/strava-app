@@ -214,7 +214,7 @@ app.get('/welcome', function(req,res){
     summaryAdd(newSummary, newInput, res);
     console.log("PREVIOUS SUMMARIES !! -> ");
 
-    console.log(previousSummaries);
+    setTimeout(console.log(previousSummaries), 1000);
     // console.log(payload);
     res.render('user', {
         newInput: newInput,
