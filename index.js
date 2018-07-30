@@ -209,12 +209,11 @@ app.get('/welcome', function(req,res){
     };
     var previousSummaries = searchID(summaryDB,query);
     var newInput = sortActivities(payload,startReqDate);
-    console.log(newInput);
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
-    console.log("PREVIOUS SUMMARIES !! -> ");
 
     function renderResults(){
+      console.log(previousSummaries);
       res.render('user', {
           newInput: newInput,
           firstName: firstNameBasis,
@@ -223,7 +222,6 @@ app.get('/welcome', function(req,res){
     }
 
     setTimeout(renderResults, 5000);
-    // console.log(payload);
 
 
   });
