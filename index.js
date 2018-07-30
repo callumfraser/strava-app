@@ -129,6 +129,10 @@ function sortActivities(response,startTime){
       };
     };
   };
+  console.log("RUNS");
+  console.log(runs);
+  console.log("RIDES");
+  console.log(rides);
   return analyseActivities(runs,rides,weeks);
 };
 
@@ -219,7 +223,7 @@ app.get('/welcome', function(req,res){
       'access_token':access_token
   },
   function(err,payload,limits) {
-    console.log(payload);
+    // console.log(payload);
     var query = {
       'id': athleteId
     };
