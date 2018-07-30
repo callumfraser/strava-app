@@ -199,7 +199,7 @@ app.get('/welcome', function(req,res){
   },
   function(err,payload,limits) {
     var newInput = sortActivities(payload,startReqDate);
-    console.log(bothSummaries);
+    // console.log(bothSummaries);
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput, res);
     // console.log(payload);
