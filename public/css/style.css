@@ -32,16 +32,21 @@ body {
   padding-top: 30px;
 }
 
+.submit{
+  margin-bottom: 20px;
+}
+
 .welcomeMsg {
   font-size: 15px;
 }
 
 .tableSize{
+  height: 200px;
   width: 70%;
 }
 
 .tableHeader{
-  background-color:
+  background-color: red;
 }
 
 .userHeader{
@@ -53,6 +58,10 @@ body {
 .userBody{
   padding-left: 40px;
   background-color: rgb(220,20,60);
+}
+
+.green{
+  background-color: green;
 }
 
 .runs{

@@ -101,25 +101,8 @@
 
       </tbody>
     </table>
-    <!-- <h4>Runs</h4>
-    <p>Average amount per week: {{newInput.runs.avPerWeek}}</p>
-    <p>Average Distance per run: {{newInput.runs.avDistancePerAct}}</p>
-    <p>Average speed per run: {{newInput.runs.avAvSpeedPerAct}}</p>
-    <p>Fastest average speed: {{newInput.runs.fastestAvSpeed}}</p>
-    <p>Longest run (distance): {{newInput.runs.longestActDistance}}</p>
-    <p>Longest run (duration): {{newInput.runs.longestActDuration}}</p>
-  </div>
-  <div>
-    <h4>Rides</h4>
-    <p>Average amount per week: {{newInput.rides.avPerWeek}}</p>
-    <p>Average Distance per ride: {{newInput.rides.avDistancePerAct}}</p>
-    <p>Average speed per ride: {{newInput.rides.avAvSpeedPerAct}}</p>
-    <p>Fastest average speed: {{newInput.rides.fastestAvSpeed}}</p>
-    <p>Longest ride (distance): {{newInput.rides.longestActDistance}}</p>
-    <p>Longest ride (duration): {{newInput.rides.longestActDuration}}</p>
-  </div> -->
 
-    <div class="">
+    <div class="submit">
       <form class="" action="" method="post">
         <span class="glyphicon glyphicon-log-out">
           <input type="submit" name="logOut" value="Log out" class="btn btn-info btn-lg">
@@ -131,9 +114,96 @@
         </span>
       </form>
     </div>
-    <h2>Previous summaries</h2>
+    <h2 class="userHeader">Previous summaries</h2>
     {{#each previousSummaries}}
-      <h3>Date: {{cleanDate date}}</h3>
+    <h5 class="date">{{cleanDate date}}</h5>
+    <table class="table table-dark tableSize runs">
+      <thead>
+        <tr>
+          <th scope="row"></th>
+          <th scope="col" class="tableHeader">Runs</th>
+          <th scope="col  "></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Average runs week</td>
+          <td>{{runs.avPerWeek}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Average distance per run</td>
+          <td>{{runs.avDistancePerAct}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Average speed per run</td>
+          <td>{{runs.avAvSpeedPerAct}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Fastest average speed</td>
+          <td>{{runs.fastestAvSpeed}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>Longest run (distance)</td>
+          <td>{{runs.longestActDistance}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Longest run (duration)</td>
+          <td>{{runs.longestActDuration}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <table class="table table-dark tableSize">
+      <thead>
+        <tr>
+          <th scope="row"></th>
+          <th scope="col" class="tableHeader">Rides</th>
+          <th scope="col  "></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Average rides per week</td>
+          <td>{{rides.avPerWeek}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Average distance per ride</td>
+          <td>{{rides.avDistancePerAct}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Average speed per ride</td>
+          <td>{{rides.avAvSpeedPerAct}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Fastest average speed</td>
+          <td>{{rides.fastestAvSpeed}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>Longest ride (distance)</td>
+          <td>{{rides.longestActDistance}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Longest ride (duration)</td>
+          <td>{{rides.longestActDuration}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+      <!-- <h3>Date: {{cleanDate date}}</h3>
       <div>
         <h4>Runs</h4>
         <p>Average amount per week: {{runs.avPerWeek}}</p>
@@ -151,9 +221,9 @@
         <p>Fastest average speed: {{rides.fastestAvSpeed}}</p>
         <p>Longest ride (distance): {{rides.longestActDistance}}</p>
         <p>Longest ride (duration): {{rides.longestActDuration}}</p>
-      </div>
+      </div> -->
       {{else}}
-        <div>
+        <div class="noPrevMsg">
           <p>No previous summaries</p>
 
         </div>
