@@ -9,7 +9,7 @@ var xhr = new XMLHttpRequest();
 var access_token;
 var firstNameBasis;
 var athleteId;
-var stats;
+var message;
 var strava = require('strava-v3');
 var summaryDB = require('./lib/summary_schema');
 var summaryAdd = require('./lib/summaryAdd');
@@ -19,6 +19,8 @@ var dateCreatedAt;
 var searchID = require('./lib/summarySearch');
 var Handlebars = require('handlebars');
 var newInput;
+var session = require('express-session');
+
 
 
 app.use(function(req,res,next){
@@ -28,6 +30,13 @@ app.use(function(req,res,next){
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
+
+app.use(session({
+    secret: "callum123",
+    resave: false,
+    saveUnititialized: true
+}))
+app.use(bodyParser.json());
 
 Handlebars.registerHelper('cleanDate', function(date) {
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -148,29 +157,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
-var getAccessToken = function(method, url, data, cb) {
-    xhr.open(method, url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              var data = JSON.parse(xhr.responseText);
-              // console.log(data);
-              access_token = data.access_token;
-              firstNameBasis = data.athlete.firstname;
-              athleteId = data.athlete.id;
-              dateCreatedAt = data.athlete.created_at;
-              // console.log("DATE CREATED AT = " + dateCreatedAt);
-              cb;
-            } else {
-                console.log("error" + xhr.status);
-            };
-        };
-    };
-};
-
 app.get('/', function(req,res){
   res.render('landing', {
       message: "Welcome to my Strava Visualisation App! Please click below to login via Strava"
@@ -188,26 +174,18 @@ app.get('/user', function(req,res){
   var currUrl = req.protocol + "://" + req.get('host') + req.originalUrl;
   var urlQ = url.parse(currUrl, true);
   var c = urlQ.query.code;
-  // var request_details = {
-  //   client_id: 27332,
-  //   client_secret: '968c5ae97ac54bbe805dc32e1e81efd7d3a07258',
-  //   code: c
-  // };
+
   strava.oauth.getToken(c,function(err,payload,limits){
+    message = "";
     console.log("strava.oauthGET PAYLOAD!!");
     console.log(payload);
     access_token = payload.access_token;
     firstNameBasis = payload.athlete.firstname;
     athleteId = payload.athlete.id;
     dateCreatedAt = payload.athlete.created_at;
+    req.session.user = payload.athlete.firstname;
     res.redirect('/welcome');
   });
-  // console.log(request_details);
-  // function redirect(){
-  //   res.redirect('/welcome');
-  // };
-  // getAccessToken('POST','https://www.strava.com/oauth/token',JSON.stringify(request_details),  redirect());
-  //+APIdata[1].responseText.access_token)
 });
 
 app.get('/welcome', function(req,res){
@@ -234,8 +212,7 @@ app.get('/welcome', function(req,res){
     };
     var previousSummaries = searchID(summaryDB,query);
     newInput = sortActivities(payload,startReqDate);
-    var newSummary = new summaryDB();
-    summaryAdd(newSummary, newInput, res);
+
 
     function renderResults(){
       console.log("RENDER THESE -> ")
@@ -243,15 +220,39 @@ app.get('/welcome', function(req,res){
       res.render('user', {
           newInput: newInput,
           firstName: firstNameBasis,
-          previousSummaries: previousSummaries
+          previousSummaries: previousSummaries,
+          message: message
       });
     };
 
-    setTimeout(renderResults, 3000);
+    if (req.session.user === firstNameBasis){
+      setTimeout(renderResults, 3000);
+    } else {
+      res.send("Unauthorized to view this page. Please return to login.");
+    }
+
+
+
 
 
   });
 });
+
+app.post('/welcome', function(req,res){
+  var logOut = req.body.logout;
+  var saveSummary = req.body.saveSummary
+  if (logOut){
+    strava.oauth.deauthorize({}, function(err,payload,limits){
+      req.session.user = null;
+    })
+  }
+  if (saveSummary){
+    var newSummary = new summaryDB();
+    summaryAdd(newSummary, newInput);
+    message = "Summary saved successfully!";
+    res.redirect('/welcome');
+  }
+})
 
 app.listen(port, function() {
     console.log("App listening on port" + port);
