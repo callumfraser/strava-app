@@ -211,7 +211,7 @@ app.get('/welcome', function(req,res){
       'id': athleteId
     };
     var previousSummaries = searchID(summaryDB,query);
-    newInput = sortActivities(payload,startReqDate);
+    newInput = sortActivities(payload,startReqDate,athleteId);
 
 
     function renderResults(){
