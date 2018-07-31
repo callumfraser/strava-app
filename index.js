@@ -38,6 +38,9 @@ app.use(session({
 }))
 app.use(bodyParser.json());
 
+app.use(express.static('./public'));
+
+
 Handlebars.registerHelper('cleanDate', function(date) {
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   var actDate = new Date(date);
