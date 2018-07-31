@@ -46,7 +46,7 @@ body {
 }
 
 .tableHeader{
-  background-color: red;
+  background-color: rgba(120,200,30,0.8);
 }
 
 .userHeader{
@@ -55,9 +55,13 @@ body {
   margin-left: -40px;
 }
 
+tr{
+  height:15px;
+}
+
 .userBody{
   padding-left: 40px;
-  background-color: rgb(220,20,60);
+  background-color: rgba(155, 250, 180, 0.85);
 }
 
 .green{
