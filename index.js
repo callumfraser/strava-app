@@ -142,7 +142,7 @@ app.get('/welcome', function(req,res){
 });
 
 app.post('/welcome', function(req,res){
-  var logOut = req.body.logout;
+  var logOut = req.body.logOut;
   var saveSummary = req.body.saveSummary
   if (logOut){
     strava.oauth.deauthorize({}, function(err,payload,limits){
