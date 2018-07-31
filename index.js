@@ -244,6 +244,7 @@ app.post('/welcome', function(req,res){
   if (logOut){
     strava.oauth.deauthorize({}, function(err,payload,limits){
       req.session.user = null;
+      res.redirect('/');
     })
   }
   if (saveSummary){
