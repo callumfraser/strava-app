@@ -40,6 +40,10 @@ body {
   width: 70%;
 }
 
+.tableHeader{
+  background-color:
+}
+
 .userHeader{
   background-color: rgba(100,150,80,0.5);
   padding-left: 40px;
@@ -48,6 +52,7 @@ body {
 
 .userBody{
   padding-left: 40px;
+  background-color: rgb(220,20,60);
 }
 
 .runs{

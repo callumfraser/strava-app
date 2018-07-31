@@ -3,7 +3,7 @@
   <link rel="icon" href="/v.jpeg">
 </head>
 
-<body align="center"class="userBody">
+<body align="center" class="userBody">
 
   <!-- <h1>The last 3 months</h1>
   <p>{{message}}</p>
@@ -21,7 +21,8 @@
       <thead>
         <tr>
           <th scope="row"></th>
-          <th scope="col"class="tableHeader">Runs</th>
+          <th scope="col" class="tableHeader">Runs</th>
+          <th scope="col  "></th>
         </tr>
       </thead>
       <tbody>
@@ -61,7 +62,9 @@
     <table class="table table-dark tableSize">
       <thead>
         <tr>
-          <th scope="col">Rides</th>
+          <th scope="row"></th>
+          <th scope="col" class="tableHeader">Rides</th>
+          <th scope="col  "></th>
         </tr>
       </thead>
       <tbody>
@@ -116,39 +119,44 @@
     <p>Longest ride (duration): {{newInput.rides.longestActDuration}}</p>
   </div> -->
 
-  <div class="">
-    <form class="" action="" method="post">
-      <input type="submit" name="logout" value="Log out">
-      <input type="submit" name="saveSummary" value="Save this summary">
-    </form>
-
-  </div>
-  <h2>Previous summaries</h2>
-  {{#each previousSummaries}}
-    <h3>Date: {{cleanDate date}}</h3>
-    <div>
-      <h4>Runs</h4>
-      <p>Average amount per week: {{runs.avPerWeek}}</p>
-      <p>Average Distance per run: {{runs.avDistancePerAct}}</p>
-      <p>Average speed per run: {{runs.avAvSpeedPerAct}}</p>
-      <p>Fastest average speed: {{uns.fastestAvSpeed}}</p>
-      <p>Longest run (distance): {{runs.longestActDistance}}</p>
-      <p>Longest run (duration): {{runs.longestActDuration}}</p>
+    <div class="">
+      <form class="" action="" method="post">
+        <span class="glyphicon glyphicon-log-out">
+          <input type="submit" name="logOut" value="Log out" class="btn btn-info btn-lg">
+        </span>
+        <!-- <input type="submit" name="logout" value="Log out"> -->
+        <!-- <input type="submit" name="saveSummary" value="Save this summary"> -->
+        <span class="glyphicon glyphicon-log-out">
+          <input type="submit" name="saveSummary" value="Save this summary" class="btn btn-info btn-lg green">
+        </span>
+      </form>
     </div>
-    <div>
-      <h4>Rides</h4>
-      <p>Average amount per week: {{rides.avPerWeek}}</p>
-      <p>Average Distance per ride: {{rides.avDistancePerAct}}</p>
-      <p>Average speed per ride: {{rides.avAvSpeedPerAct}}</p>
-      <p>Fastest average speed: {{rides.fastestAvSpeed}}</p>
-      <p>Longest ride (distance): {{rides.longestActDistance}}</p>
-      <p>Longest ride (duration): {{rides.longestActDuration}}</p>
-    </div>
-    {{else}}
+    <h2>Previous summaries</h2>
+    {{#each previousSummaries}}
+      <h3>Date: {{cleanDate date}}</h3>
       <div>
-        <p>No previous summaries</p>
-
+        <h4>Runs</h4>
+        <p>Average amount per week: {{runs.avPerWeek}}</p>
+        <p>Average Distance per run: {{runs.avDistancePerAct}}</p>
+        <p>Average speed per run: {{runs.avAvSpeedPerAct}}</p>
+        <p>Fastest average speed: {{uns.fastestAvSpeed}}</p>
+        <p>Longest run (distance): {{runs.longestActDistance}}</p>
+        <p>Longest run (duration): {{runs.longestActDuration}}</p>
       </div>
-  {{/each}}
+      <div>
+        <h4>Rides</h4>
+        <p>Average amount per week: {{rides.avPerWeek}}</p>
+        <p>Average Distance per ride: {{rides.avDistancePerAct}}</p>
+        <p>Average speed per ride: {{rides.avAvSpeedPerAct}}</p>
+        <p>Fastest average speed: {{rides.fastestAvSpeed}}</p>
+        <p>Longest ride (distance): {{rides.longestActDistance}}</p>
+        <p>Longest ride (duration): {{rides.longestActDuration}}</p>
+      </div>
+      {{else}}
+        <div>
+          <p>No previous summaries</p>
+
+        </div>
+    {{/each}}
 
 </body>
