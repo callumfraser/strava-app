@@ -15,7 +15,7 @@ var summaryDB = require('./lib/summary_schema');
 var summaryAdd = require('./lib/summaryAdd');
 var sortActivities = require('./lib/sortActivities');
 var mongoose = require('mongoose');
-// var moment = require('moment');
+var moment = require('moment');
 var dateCreatedAt;
 var searchID = require('./lib/summarySearch');
 var Handlebars = require('handlebars');
