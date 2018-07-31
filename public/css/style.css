@@ -60,8 +60,10 @@ body {
   margin-left: -40px;
 }
 
-tr.row{
-  height:10px;
+tr {
+   line-height: 15px;
+   min-height: 15px;
+   height: 15px;
 }
 
 .userBody{
