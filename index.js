@@ -247,9 +247,11 @@ app.post('/welcome', function(req,res){
     })
   }
   if (saveSummary){
+    console.log("jy my bra'tjie");
     var newSummary = new summaryDB();
     summaryAdd(newSummary, newInput);
     message = "Summary saved successfully!";
+    console.log(message);
     res.redirect('/welcome');
   }
 })
