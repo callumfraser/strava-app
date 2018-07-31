@@ -18,9 +18,11 @@
   </div>
   {{#if message}}
   <div class="userHeader">
-    <p>{{message}}</p>
+    <p class="savedSummary">{{message}}</p>
   </div>
   {{/if}}
+  <p>Hi there, {{firstNameBasis}}, here's your ride and run data from the last 3 months.</p>
+  <br><br>
   <div>
     <table class="table table-sm table-dark tableSize runs">
       <thead>
@@ -59,7 +61,7 @@
         <tr>
           <th scope="row">6</th>
           <td>Longest run (duration)</td>
-          <td>{{newInput.runs.longestActDuration}}</td>
+          <td>{{newInput.runs.longestActDuration}}s</td>
         </tr>
 
       </tbody>
@@ -101,7 +103,7 @@
         <tr>
           <th scope="row">6</th>
           <td>Longest ride (duration)</td>
-          <td>{{newInput.rides.longestActDuration}}</td>
+          <td>{{newInput.rides.longestActDuration}}s</td>
         </tr>
 
       </tbody>
@@ -159,7 +161,7 @@
         <tr>
           <th scope="row">6</th>
           <td>Longest run (duration)</td>
-          <td>{{runs.longestActDuration}}</td>
+          <td>{{runs.longestActDuration}}s</td>
         </tr>
 
       </tbody>
@@ -201,7 +203,7 @@
         <tr>
           <th scope="row">6</th>
           <td>Longest ride (duration)</td>
-          <td>{{rides.longestActDuration}}</td>
+          <td>{{rides.longestActDuration}}s</td>
         </tr>
 
       </tbody>

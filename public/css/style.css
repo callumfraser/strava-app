@@ -66,6 +66,10 @@ tr {
    height: 15px;
 }
 
+.savedSummary{
+  font-size: 12px;
+}
+
 .userBody{
   padding-left: 40px;
   background-color: rgba(155, 250, 180, 0.85);
