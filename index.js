@@ -7,7 +7,7 @@ var url = require('url');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 var access_token;
-var firstNameBasis;
+var firstNameBasis = "noName";
 var athleteId;
 var message;
 var strava = require('strava-v3');
