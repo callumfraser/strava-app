@@ -5,41 +5,99 @@
 
 <body align="center">
 
-  <h1>The last 3 months</h1>
+  <!-- <h1>The last 3 months</h1>
   <p>{{message}}</p>
-  <p>Hi there, {{firstName}}, here is your summary of the past 3 months</p>
+  <p>Hi there, {{firstName}}, here is your summary of the past 3 months</p> -->
+  <div class="page-header">
+
+    <h1>
+      Visualise Runs and Rides
+      <small>Your last 3 months on Strava</small>
+   </h1>
+
+  </div>
   <div>
-    <table class="table table-dark">
+    <table class="table table-dark tableSize">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Runs</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>Average runs week</td>
+          <td>{{newInput.runs.avPerWeek}}</td>
         </tr>
         <tr>
           <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td>Average distance per run</td>
+          <td>{{newInput.runs.avDistancePerAct}}m</td>
         </tr>
         <tr>
           <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+          <td>Average speed per run</td>
+          <td>{{newInput.runs.avAvSpeedPerAct}}km/h</td>
         </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Fastest average speed</td>
+          <td>{{newInput.runs.fastestAvSpeed}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>Longest run (distance)</td>
+          <td>{{newInput.runs.longestActDistance}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Longest run (duration)</td>
+          <td>{{newInput.runs.longestActDuration}}</td>
+        </tr>
+
       </tbody>
     </table>
-    <h4>Runs</h4>
+    <table class="table table-dark tableSize">
+      <thead>
+        <tr>
+          <th scope="col">Rides</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Average rides per week</td>
+          <td>{{newInput.rides.avPerWeek}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Average distance per ride</td>
+          <td>{{newInput.rides.avDistancePerAct}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Average speed per ride</td>
+          <td>{{newInput.rides.avAvSpeedPerAct}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Fastest average speed</td>
+          <td>{{newInput.rides.fastestAvSpeed}}km/h</td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>Longest ride (distance)</td>
+          <td>{{newInput.rides.longestActDistance}}m</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Longest ride (duration)</td>
+          <td>{{newInput.rides.longestActDuration}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <!-- <h4>Runs</h4>
     <p>Average amount per week: {{newInput.runs.avPerWeek}}</p>
     <p>Average Distance per run: {{newInput.runs.avDistancePerAct}}</p>
     <p>Average speed per run: {{newInput.runs.avAvSpeedPerAct}}</p>
@@ -55,9 +113,9 @@
     <p>Fastest average speed: {{newInput.rides.fastestAvSpeed}}</p>
     <p>Longest ride (distance): {{newInput.rides.longestActDistance}}</p>
     <p>Longest ride (duration): {{newInput.rides.longestActDuration}}</p>
-  </div>
+  </div> -->
 
-  <div class="" align="left">
+  <div class="">
     <form class="" action="" method="post">
       <input type="submit" name="logout" value="Log out">
       <input type="submit" name="saveSummary" value="Save this summary">

@@ -35,3 +35,7 @@ body {
 .welcomeMsg {
   font-size: 15px;
 }
+
+.tableSize{
+  width: 70%;
+}
