@@ -1,3 +1,4 @@
 body {
-  background-image: url('./workin-out.jpg');
-}
+  /* background-image: url('./workin-out.jpg'); */
+  background-color: rgba(100,150,250,0.6);
+};
