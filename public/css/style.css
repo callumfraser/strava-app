@@ -42,8 +42,18 @@ body {
 
 .userHeader{
   background-color: rgba(100,150,80,0.5);
+  padding-left: 40px;
+  margin-left: -40px;
 }
 
 .userBody{
   padding-left: 40px;
+}
+
+.runs{
+  background-color: rgb(169,169,169);
+}
+
+.rides{
+  background-color: rgb(105,105,105);
 }
