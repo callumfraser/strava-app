@@ -39,3 +39,11 @@ body {
 .tableSize{
   width: 70%;
 }
+
+.userHeader{
+  background-color: rgba(100,150,80,0.5);
+}
+
+.userBody{
+  padding-left: 40px;
+}
