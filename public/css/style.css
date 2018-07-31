@@ -1,3 +1,7 @@
+body {
+  font-family: monospace;
+}
+
 .landingBody {
   background-image: url('../workin-out.jpg');
   background-color: rgba(100,150,80,0.5);
@@ -20,10 +24,14 @@
 
 .welcomeDiv {
   text-align: center;
-  width: 50%;
+  border-radius: 400px;
+  width: 35%;
   background-color: rgba(155, 250, 180, 0.85);
   margin: 250px auto;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-radius:100px;
+}
+
+.welcomeMsg {
+  font-size: 15px;
 }
