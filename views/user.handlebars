@@ -37,7 +37,7 @@
   {{#each previousSummaries}}
     <h3>Date: {{cleanDate date}}</h3>
     <div>
-      <p>Runs:</p>
+      <h4>Runs</h4>
       <p>Average amount per week: {{runs.avPerWeek}}</p>
       <p>Average Distance per run: {{runs.avDistancePerAct}}</p>
       <p>Average speed per run: {{runs.avAvSpeedPerAct}}</p>
@@ -46,13 +46,18 @@
       <p>Longest run (duration): {{runs.longestActDuration}}</p>
     </div>
     <div>
-      <p>Rides:</p>
+      <h4>Rides</h4>
       <p>Average amount per week: {{rides.avPerWeek}}</p>
       <p>Average Distance per ride: {{rides.avDistancePerAct}}</p>
       <p>Average speed per ride: {{rides.avAvSpeedPerAct}}</p>
       <p>Fastest average speed: {{rides.fastestAvSpeed}}</p>
       <p>Longest ride (distance): {{rides.longestActDistance}}</p>
       <p>Longest ride (duration): {{rides.longestActDuration}}</p>
+    </div>
+  {{else}}
+    <div>
+      <p>No previous summaries</p>
+
     </div>
   {{/each}}
 
