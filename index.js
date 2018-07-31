@@ -148,6 +148,7 @@ app.post('/welcome', function(req,res){
     strava.oauth.deauthorize({}, function(err,payload,limits){
       req.session.user = null;
       res.redirect('/');
+      message = "";
     })
   }
   if (saveSummary){
