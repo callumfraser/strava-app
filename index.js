@@ -45,7 +45,7 @@ app.use(express.static('./public'));
 Handlebars.registerHelper('cleanDate', function(date) {
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   var actDate = new Date(date);
-  return actDate.toLocaleDateString("en-US", options);
+  return actDate.toLocaleDateString("en-US", options) + ", " + actDate.toLocaleTimeString();
 });
 
 Handlebars.registerHelper('cleanTime', function(time){
