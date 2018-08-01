@@ -70,7 +70,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', function(req,res){
   res.render('landing', {
-      message: "Welcome to my Strava Visualisation App! Please click below to login via Strava"
+      message: "Welcome to my Strava Summary App! Click below to get started and login via Strava"
   });
 });
 
