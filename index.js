@@ -22,9 +22,13 @@ var Handlebars = require('handlebars');
 var newInput;
 var session = require('express-session');
 
-function sortDates(){
-
-}
+function sortDates(sum1, sum2) {
+  var d1 = new Date(sum1.date).getTime();
+  var d2 = new Date(sum2.date).getTime();
+  if (d1 > d2) return -1;
+  if (d1 < d2) return 1;
+  return 0;
+};
 
 
 
@@ -121,7 +125,7 @@ app.get('/welcome', function(req,res){
     var query = {
       'id': athleteId
     };
-    console.log("HOW MANY ARE THERE!!")
+    console.log("HOW MANY ARE THERE!!");
 
     var previousSummaries = searchID(summaryDB,query);
     newInput = sortActivities(payload,startReqDate,athleteId);
@@ -134,7 +138,7 @@ app.get('/welcome', function(req,res){
       res.render('user', {
           newInput: newInput,
           firstName: firstNameBasis,
-          previousSummaries: previousSummaries,
+          previousSummaries: previousSummaries.sort(sortDates),
           message: message
       });
     };
