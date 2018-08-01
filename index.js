@@ -48,6 +48,13 @@ Handlebars.registerHelper('cleanDate', function(date) {
   return actDate.toLocaleDateString("en-US", options);
 });
 
+Handlebars.registerHelper('cleanTime', function(time){
+  var minutes = Math.floor(time / 60);
+  var seconds = time - minutes * 60;
+  return minutes + "m, " + seconds + "s"
+
+})
+
 const mongoURL = process.env.MONGO_DB_URL || "mongodb://localhost/StravaAPIs"
 mongoose.connect(mongoURL);
 
@@ -133,11 +140,6 @@ app.get('/welcome', function(req,res){
     } else {
       res.send("Unauthorized to view this page. Please return to login.");
     }
-
-
-
-
-
   });
 });
 
