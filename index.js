@@ -22,6 +22,10 @@ var Handlebars = require('handlebars');
 var newInput;
 var session = require('express-session');
 
+function sortDates(){
+
+}
+
 
 
 app.use(function(req,res,next){
@@ -45,7 +49,7 @@ app.use(express.static('./public'));
 Handlebars.registerHelper('cleanDate', function(date) {
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   var actDate = new Date(date);
-  return actDate.toLocaleDateString("en-US", options) + ", " + actDate.toLocaleTimeString();
+  return actDate.toLocaleDateString("en-US", options) + ", " + actDate.toLocaleTimeString("en-US",{timeZone:"UTC+02:00"});
 });
 
 Handlebars.registerHelper('cleanTime', function(time){
