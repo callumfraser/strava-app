@@ -125,8 +125,7 @@ app.get('/welcome', function(req,res){
     var query = {
       'id': athleteId
     };
-    console.log("HOW MANY ARE THERE!!");
-
+    
     var previousSummaries = searchID(summaryDB,query);
     newInput = sortActivities(payload,startReqDate,athleteId);
 
