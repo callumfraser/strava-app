@@ -121,6 +121,8 @@ app.get('/welcome', function(req,res){
       'access_token':access_token
   },
   function(err,payload,limits) {
+    console.log("NO ACTIVITIES!!! -> ")
+    console.log(payload);
     // console.log(payload);
     if (payload == undefined){
       res.send("Go out there and do some activities before checking your summary!!");
