@@ -122,10 +122,13 @@ app.get('/welcome', function(req,res){
   },
   function(err,payload,limits) {
     // console.log(payload);
+    if (payload == undefined){
+      res.send("Go out there and do some activities before checking your summary!!");
+    } else {
     var query = {
       'id': athleteId
     };
-    
+
     var previousSummaries = searchID(summaryDB,query);
     newInput = sortActivities(payload,startReqDate,athleteId);
 
@@ -147,6 +150,7 @@ app.get('/welcome', function(req,res){
     } else {
       res.send("Unauthorized to view this page. Please return to login.");
     }
+  }
   });
 });
 
